@@ -1,36 +1,7 @@
 import "./App.css";
+import { products } from "./data/data";
 
 function App() {
-  const products = [
-    {
-      id: 1,
-      name: "Laptop",
-      price: 3000,
-      image: "💻",
-    },
-
-    {
-      id: 2,
-      name: "Mouse",
-      price: 80,
-      image: "🖱️",
-    },
-
-    {
-      id: 3,
-      name: "Teclado",
-      price: 200,
-      image: "⌨️",
-    },
-
-    {
-      id: 4,
-      name: "Monitor",
-      price: 900,
-      image: "🖥️",
-    },
-  ];
-
   function addToCart(product) {
     window.dispatchEvent(
       new CustomEvent("add-to-cart", {
@@ -43,13 +14,20 @@ function App() {
     <div className="catalog">
       {products.map((product) => (
         <div className="product-card" key={product.id}>
-          <div className="image">{product.image}</div>
+          <div className="image">
+            <img src={product.imageUrl} alt={product.name} />
+          </div>
 
-          <h3>{product.name}</h3>
-
-          <p>S/. {product.price}</p>
-
-          <button onClick={() => addToCart(product)}>Agregar al carrito</button>
+          <div className="info">
+            <h3>{product.name}</h3>
+            <p className="price">
+              <span className="currency">S/.</span>
+              {product.price}
+            </p>
+            <button onClick={() => addToCart(product)}>
+              Agregar al carrito
+            </button>
+          </div>
         </div>
       ))}
     </div>
