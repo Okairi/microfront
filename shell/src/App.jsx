@@ -7,7 +7,7 @@ function App() {
     <div className="app">
       <header className="navbar">
         <div>
-          <h1>🛒 Mini Store</h1>
+          <h1>Mini Store</h1>
 
           <span>Micro Frontend Ecommerce</span>
         </div>
@@ -17,7 +17,7 @@ function App() {
 
       <main className="layout">
         <section className="products-section">
-          <h2>Productos</h2>
+          <h2 className="titleCatalog">Productos</h2>
 
           <Catalog />
         </section>

@@ -1,11 +1,29 @@
+:root {
+  /* === Inicio variables compartidas === */
+  --color-bg: #f7f7f5;
+  --color-surface: #ffffff;
+  --color-text: #16181d;
+  --color-text-muted: #6b7280;
+  --color-accent: #0f5132;
+  --color-accent-hover: #0b3d26;
+  --color-border: #e8e8e6;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 12px 24px rgba(0, 0, 0, 0.1);
+  --font-base: "Inter", system-ui, -apple-system, sans-serif;
+}
+/*fin de las variables compartidas */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f3f4f6;
+  font-family: var(--font-base);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 .app {
@@ -13,49 +31,82 @@ body {
 }
 
 .navbar {
-  background: #111827;
+  background: #111417;
   color: white;
-
-  padding: 20px 40px;
-
+  padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 3px solid var(--color-accent);
 }
 
 .navbar h1 {
   margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .navbar span {
   color: #9ca3af;
+  font-size: 13px;
 }
 
 .user {
-  font-size: 18px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 8px 14px;
+  border-radius: 999px;
 }
 
 .layout {
   display: grid;
-
   grid-template-columns: 2fr 1fr;
-
   gap: 25px;
-
   padding: 30px;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: start;
 }
 
 .products-section,
 .cart-section {
-  background: white;
-
-  border-radius: 16px;
-
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
   padding: 25px;
+  box-shadow: var(--shadow-card);
+}
 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+.products-section h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .cart-section {
   height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .cart-section {
+    position: static;
+  }
+}
+.titleCatalog {
+  color: var(--color-text);
 }
