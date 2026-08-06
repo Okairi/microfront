@@ -1,0 +1,20 @@
+.cart {
+}
+
+.cart-item {
+  display: flex;
+
+  justify-content: space-between;
+
+  background: #f9fafb;
+
+  padding: 12px;
+
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+}
+
+.cart h3 {
+  font-size: 22px;
+}
