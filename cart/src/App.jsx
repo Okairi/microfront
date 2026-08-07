@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { FaArrowRight, FaTrash, FaPlus, FaMinus } from "react-icons/fa";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -40,6 +41,40 @@ function App() {
     };
   }, []);
 
+  function increaseQuantity(id) {
+    setProducts((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item,
+      ),
+    );
+  }
+
+  function decreaseQuantity(id) {
+    setProducts((prev) =>
+      prev
+
+        .map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
+            : item,
+        )
+
+        .filter((item) => item.quantity > 0),
+    );
+  }
+
+  function removeProduct(id) {
+    setProducts((prev) => prev.filter((item) => item.id !== id));
+  }
+
   const total = products.reduce(
     (sum, item) => sum + item.price * item.quantity,
 
@@ -54,20 +89,38 @@ function App() {
 
   return (
     <div className="cart">
-      <h2 className="titleCart">Tú carrito de compras</h2>
+      <h2>🛒 Tu carrito de compras</h2>
 
       {products.length === 0 ? (
         <p className="cart-empty">Tu carrito está vacío</p>
       ) : (
         products.map((item) => (
           <div className="cart-item" key={item.id}>
-            <div>
+            <div className="cart-info">
               <strong>{item.name}</strong>
 
-              <p>Cantidad: {item.quantity}</p>
+              <p>S/. {item.price}</p>
+
+              <div className="quantity">
+                <button onClick={() => decreaseQuantity(item.id)}>
+                  <FaMinus />
+                </button>
+
+                <span>{item.quantity}</span>
+
+                <button onClick={() => increaseQuantity(item.id)}>
+                  <FaPlus />
+                </button>
+              </div>
             </div>
 
-            <span>S/. {item.price * item.quantity}</span>
+            <div className="cart-actions">
+              <strong>S/. {item.price * item.quantity}</strong>
+
+              <button className="delete" onClick={() => removeProduct(item.id)}>
+                <FaTrash />
+              </button>
+            </div>
           </div>
         ))
       )}
@@ -86,7 +139,9 @@ function App() {
         <span>S/. {total}</span>
       </div>
 
-      <button disabled={products.length === 0}>Comprar</button>
+      <button disabled={products.length === 0} className="align">
+        Comprar <FaArrowRight />
+      </button>
     </div>
   );
 }
