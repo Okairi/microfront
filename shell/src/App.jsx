@@ -1,18 +1,27 @@
 import Catalog from "catalog/Catalog";
 import Cart from "cart/Cart";
 import "./App.css";
+import { FaRegUser } from "react-icons/fa6";
+import { RiStore2Line } from "react-icons/ri";
 
 function App() {
   return (
     <div className="app">
       <header className="navbar">
         <div>
-          <h1>Mini Store</h1>
+          <h1 className="align">
+            <RiStore2Line />
+            Mini Store
+          </h1>
 
           <span>Micro Frontend Ecommerce</span>
         </div>
 
-        <div className="user">👤 Cliente</div>
+        <div className="user">
+          <FaRegUser />
+          <span> </span>
+          Cliente
+        </div>
       </header>
 
       <main className="layout">

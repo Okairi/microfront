@@ -110,3 +110,9 @@ body {
 .titleCatalog {
   color: var(--color-text);
 }
+.align {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
