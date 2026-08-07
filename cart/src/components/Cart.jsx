@@ -107,7 +107,14 @@ function Cart({ products, setProducts }) {
 
       const data = JSON.parse(text);
 
-      console.log("Data:", data);
+      console.log("Data completa:", data);
+      console.log("URL Stripe:", data.url);
+
+      if (!data.url) {
+        console.error(" Stripe no devolvió URL");
+        setLoading(false);
+        return;
+      }
 
       window.location.href = data.url;
     } catch (error) {
