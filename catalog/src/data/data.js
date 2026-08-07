@@ -41,4 +41,19 @@ export const products = [
     imageUrl:
       "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRnHxSPX_tpJHEt4EmsjlBwgLlx7e77bjRv9losv9f2uAoswv06zFWJWQ__udWyHjsYn2G8bv8N_EoPIudlf60KiJdlzoYVB7_YnBSyIHP6IURrHAStnLusHf7p-t5ANhCttK6XsQ",
   },
+  {
+    id: 7,
+    name: "PlayStation 2 TB",
+    price: 2500,
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRnHxSPX_tpJHEt4EmsjlBwgLlx7e77bjRv9losv9f2uAoswv06zFWJWQ__udWyHjsYn2G8bv8N_EoPIudlf60KiJdlzoYVB7_YnBSyIHP6IURrHAStnLusHf7p-t5ANhCttK6XsQ",
+  },
+  {
+    id: 8,
+    name: "PlayStation 500 GB",
+    price: 2500,
+    imageUrl:
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRnHxSPX_tpJHEt4EmsjlBwgLlx7e77bjRv9losv9f2uAoswv06zFWJWQ__udWyHjsYn2G8bv8N_EoPIudlf60KiJdlzoYVB7_YnBSyIHP6IURrHAStnLusHf7p-t5ANhCttK6XsQ",
+  },
 ];
+7;
