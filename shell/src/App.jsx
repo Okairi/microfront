@@ -7,17 +7,28 @@ const Catalog = lazy(() => import("catalog/Catalog"));
 const Cart = lazy(() => import("cart/Cart"));
 
 function Loading({ text }) {
-  return (
-    <div className="loading">
-      <div className="spinner"></div>
-      <p>{text}</p>
-    </div>
-  );
+  return <div className="loading">{text}</div>;
 }
 
 function App() {
+  const path = window.location.pathname;
+
+  let paymentMessage = null;
+
+  if (path === "/success") {
+    paymentMessage = "🎉 ¡Felicidades! Tu pago fue realizado correctamente.";
+  }
+
+  if (path === "/cancel") {
+    paymentMessage = "❌ Operación cancelada. Tu pago no fue procesado.";
+  }
+
   return (
     <div className="app">
+      {paymentMessage && (
+        <div className="payment-message">{paymentMessage}</div>
+      )}
+
       <header className="navbar">
         <div>
           <h1 className="align">
