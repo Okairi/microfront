@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { FaArrowRight, FaTrash, FaPlus, FaMinus } from "react-icons/fa";
 
-function Cart({ products, setProducts, onCheckout }) {
+function Cart({ products, setProducts }) {
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     function handleCart(event) {
       const product = event.detail;
@@ -72,15 +74,47 @@ function Cart({ products, setProducts, onCheckout }) {
 
   const total = products.reduce(
     (sum, item) => sum + item.price * item.quantity,
-
     0,
   );
 
-  const totalProducts = products.reduce(
-    (sum, item) => sum + item.quantity,
+  const totalProducts = products.reduce((sum, item) => sum + item.quantity, 0);
 
-    0,
-  );
+  async function handleCheckout() {
+    try {
+      setLoading(true);
+
+      console.log("Productos enviados:", products);
+
+      const response = await fetch(
+        "/.netlify/functions/create-checkout-session",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            products,
+          }),
+        },
+      );
+
+      const text = await response.text();
+
+      console.log("Status:", response.status);
+      console.log("Respuesta cruda:", text);
+
+      const data = JSON.parse(text);
+
+      console.log("Data:", data);
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Error checkout:", error);
+      setLoading(false);
+    }
+  }
 
   return (
     <div className="cart">
@@ -124,20 +158,28 @@ function Cart({ products, setProducts, onCheckout }) {
 
       <div className="cart-total">
         <span>Productos:</span>
+
         <span>{totalProducts}</span>
       </div>
 
       <div className="cart-total">
         <span>Total:</span>
+
         <span>S/. {total}</span>
       </div>
 
       <button
-        disabled={products.length === 0}
+        disabled={products.length === 0 || loading}
         className="align"
-        onClick={onCheckout}
+        onClick={handleCheckout}
       >
-        Comprar <FaArrowRight />
+        {loading ? (
+          "Procesando..."
+        ) : (
+          <>
+            Comprar <FaArrowRight />
+          </>
+        )}
       </button>
     </div>
   );
