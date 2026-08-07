@@ -23,10 +23,13 @@ exports.handler = async (event) => {
 
       mode: "payment",
 
-      success_url: "http://localhost:8888/success",
+      success_url: "https://microfront-shell.netlify.app/success",
 
-      cancel_url: "http://localhost:8888/",
+      cancel_url: "https://microfront-shell.netlify.app/",
     });
+
+    console.log("Stripe session:", session.id);
+    console.log("Stripe URL:", session.url);
 
     return {
       statusCode: 200,
@@ -36,6 +39,8 @@ exports.handler = async (event) => {
       }),
     };
   } catch (error) {
+    console.error("Stripe error:", error);
+
     return {
       statusCode: 500,
 
