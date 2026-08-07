@@ -27,7 +27,7 @@ export async function handler(event) {
 
       success_url: "https://microfront-shell.netlify.app/success",
 
-      cancel_url: "https://microfront-shell.netlify.app/",
+      cancel_url: "https://microfront-shell.netlify.app/cancel",
     });
 
     console.log("Stripe session:", session.id);
