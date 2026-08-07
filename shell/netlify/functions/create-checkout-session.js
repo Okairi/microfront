@@ -1,6 +1,8 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
 
-exports.handler = async (event) => {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+export async function handler(event) {
   try {
     const { products } = JSON.parse(event.body);
 
@@ -34,12 +36,16 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
 
+      headers: {
+        "Content-Type": "application/json",
+      },
+
       body: JSON.stringify({
         url: session.url,
       }),
     };
   } catch (error) {
-    console.error("Stripe error:", error);
+    console.error(error);
 
     return {
       statusCode: 500,
@@ -49,4 +55,4 @@ exports.handler = async (event) => {
       }),
     };
   }
-};
+}
