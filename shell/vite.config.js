@@ -13,12 +13,12 @@ export default defineConfig({
         catalog: {
           type: "module",
           name: "catalog",
-          entry: "http://localhost:5173/remoteEntry.js",
+          entry: "https://microfrontend-catalog.netlify.app/remoteEntry.js",
         },
         cart: {
           type: "module",
           name: "cart",
-          entry: "http://localhost:5174/remoteEntry.js",
+          entry: "https://microfront-cart.netlify.app/remoteEntry.js",
         },
       },
 
