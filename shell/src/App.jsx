@@ -1,42 +1,51 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import "./App.css";
 import { FaRegUser } from "react-icons/fa6";
 import { RiStore2Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 const Catalog = lazy(() => import("catalog/Catalog"));
 const Cart = lazy(() => import("cart/Cart"));
 
 function Loading({ text }) {
-  return <div className="loading">{text}</div>;
+  return text;
 }
 
 function App() {
-  const path = window.location.pathname;
+  useEffect(() => {
+    const path = window.location.pathname;
 
-  let paymentMessage = null;
+    if (path === "/success") {
+      Swal.fire({
+        icon: "success",
+        title: "¡Pago realizado!",
+        text: "Tu compra fue procesada correctamente.",
+        confirmButtonText: "Aceptar",
+      });
+    }
 
-  if (path === "/success") {
-    paymentMessage = "🎉 ¡Felicidades! Tu pago fue realizado correctamente.";
-  }
-
-  if (path === "/cancel") {
-    paymentMessage = "❌ Operación cancelada. Tu pago no fue procesado.";
-  }
+    if (path === "/cancel") {
+      Swal.fire({
+        icon: "warning",
+        title: "Pago cancelado",
+        text: "Tu operación no fue completada.",
+        confirmButtonText: "Entendido",
+      });
+    }
+  }, []);
 
   return (
-    <div className="app">
-      {paymentMessage && (
-        <div className="payment-message">{paymentMessage}</div>
-      )}
-
+    <div>
       <header className="navbar">
         <div>
           <h1 className="align">
             <RiStore2Line />
             Mini Store
           </h1>
+
           <span>Micro Frontend Ecommerce</span>
         </div>
+
         <div className="user">
           <FaRegUser />
           <span> </span>
